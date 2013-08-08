@@ -797,17 +797,11 @@ static void baseband_xmm_power_init2_work(struct work_struct *work)
 
 	/* register usb host controller only once */
 	if (register_hsic_device) {
-		if (data->hsic_register) {
+		if (data->hsic_register) 
 			data->modem.xmm.hsic_device = data->hsic_register();
-			if(modem_reset_flag == 1) {
-				tegra_usb_suspend_hsic();
-				mdelay(1000);
-				tegra_usb_resume_hsic();
-			}
-		} else
+		else
 			pr_err("%s: hsic_register is missing\n", __func__);
 		register_hsic_device = false;
-		modem_reset_flag = 0;
 	}
 
 }
